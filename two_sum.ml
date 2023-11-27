@@ -50,10 +50,10 @@ let two_sum_rev_list mylist1 target =
             if ( diff == 0 ) then
                 [ hd1 ; hd2]
             else
-                    if ( diff > 0 ) then
-                        find_pair mylist1 tl2 target
-                    else
-                        find_pair tl1 mylist2 target
+                if ( diff > 0 ) then
+                    find_pair mylist1 tl2 target
+                else
+                    find_pair tl1 mylist2 target
     in
     find_pair mylist1 mylist2 target 
     ;;
@@ -70,16 +70,20 @@ let two_sum_make_compare mylist target =
     let keeper_list = [] in
     let rec find_pair mylist target keeper_list =
         match mylist with
-        | [] -> false
+        | [] -> []
         | hd :: tl ->
             match List.exists ( (=) ( target - hd ) ) keeper_list with
-            | true -> true
+            | true -> [ (target - hd) ; hd ]
             | false -> find_pair tl target ( hd :: keeper_list )
     in
     find_pair mylist target keeper_list
     ;;
 
-let a = [-2; 98; -85 ; 1; 2; 4; 6; 8; 11; 19 ] ;;
+
+
+
+
+let a = [-2; -1 ; 1; 2; 4; 6; 8; 11; 19 ] ;;
 let target = 13 ;; 
 
 print_list_int a ;;
@@ -102,7 +106,9 @@ let () =
 
 let () =
     let is_it = two_sum_make_compare a target in
-    let thing = Printf.sprintf "Create Comparision list:\n Is this good for two_sum? %B\n%!" is_it in
+    let is_emptee = List.compare_length_with is_it 0 != 0 in
+    (* print_list_int is_it ; *)
+    let thing = Printf.sprintf "Create Comparision list:\n Is this good for two_sum? %B\n%!" is_emptee in
     print_string thing 
     ;;
 
