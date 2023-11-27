@@ -38,7 +38,7 @@ let two_sum mylist1 target =
 
 
 let a = [-2; 1; 2; 4; 6; 7; 18; 19 ] ;;
-let target = 3 ;; 
+let target = 13 ;; 
 
 two_sum a target ;;
 
